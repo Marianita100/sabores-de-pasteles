@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro e Inicio de Sesión</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #6c12a0;
+            color: #c94692;
+            text-align: center;
+        }
+        header {
+            background-color: #7c57d1;
+            padding: 20px;
+            border-radius: 15px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #ff1493;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background-color: #ff69b4;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+            margin: 50px auto;
+        }
+        .hidden {
+            display: none;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ff1493;
+            border-radius: 5px;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        button {
+            background-color: #7c57d1;
+            color: white;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        button:hover {
+            background-color: #7c57d1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Pasteles</h1>
+        <nav>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <!-- Registro -->
+        <div id="registro">
+            <h2>Registro</h2>
+            <input type="text" id="nombreRegistro" placeholder="Nombre" required>
+            <input type="text" id="apellidosRegistro" placeholder="Apellidos" required>
+            <input type="text" id="usuarioRegistro" placeholder="Usuario" required>
+            <input type="password" id="passwordRegistro" placeholder="Contraseña" required>
+            <input type="number" id="edadRegistro" placeholder="Edad" required>
+            <input type="email" id="emailRegistro" placeholder="Email" required>
+            <select id="generoRegistro" required>
+                <option value="">Selecciona tu género</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+                <option value="Otro">Otro</option>
+            </select>
+            <button onclick="registrarse()">Registrarse</button>
+            <p>¿Ya tienes una cuenta? <a href="#" onclick="toggleForm()">Inicia sesión</a></p>
+        </div>
+        
+        
+        <div id="login" class="hidden">
+            <h2>Iniciar Sesión</h2>
+            <input type="text" id="usuarioLogin" placeholder="Usuario" required>
+            <input type="password" id="passwordLogin" placeholder="Contraseña" required>
+            <button onclick="login()">Iniciar Sesión</button>
+            <p>¿No tienes cuenta? <a href="#" onclick="toggleForm()">Regístrate</a></p>
+        </div>
+    </div>
+
+    <script>
+     
+        function toggleForm() {
+            document.getElementById('registro').classList.toggle('hidden');
+            document.getElementById('login').classList.toggle('hidden');
+        }
+
+     
+        function registrarse() {
+            var usuario = document.getElementById("usuarioRegistro").value;
+            var password = document.getElementById("passwordRegistro").value;
+
+            if (usuario.trim() === "" || password.trim() === "") {
+                alert("Por favor, completa todos los campos.");
+                return;
+            }
+
+            
+            localStorage.setItem("usuario", usuario);
+            alert("Registro exitoso. Ahora inicia sesión.");
+            toggleForm(); 
+        }
+
+       
+        function login() {
+            var usuario = document.getElementById("usuarioLogin").value;
+            var password = document.getElementById("passwordLogin").value;
+
+            if (usuario.trim() === "" || password.trim() === "") {
+                alert("Por favor, ingresa tu usuario y contraseña.");
+                return;
+            }
+
+            
+            localStorage.setItem("usuario", usuario);
+
+            
+            window.location.href = "menuprincipal.html";
+        }
+    </script>
+</body>
+</html>

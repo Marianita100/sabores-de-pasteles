@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Usuario</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e6ccff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .perfil-container {
+            width: 400px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            text-align: center;
+            background-color: #d8b3ff;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 20px;
+        }
+        .banner {
+            width: 100%;
+            height: 150px;
+            background: url('banner.jpg') center/cover no-repeat;
+        }
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid white;
+            margin-top: -50px;
+        }
+        .perfil-info {
+            padding: 20px;
+        }
+        .perfil-info h2 {
+            margin: 10px 0;
+            color: #5d0096;
+        }
+        .perfil-info input, .perfil-info button {
+            margin-top: 10px;
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .perfil-info button {
+            background-color: #7a00cc;
+            color: white;
+            cursor: pointer;
+        }
+        .perfil-info button:hover {
+            background-color: #5d0096;
+        }
+        .logout-btn, .return {
+            display: block;
+            margin: 10px auto;
+            padding: 5px 10px;
+            font-size: 12px;
+            background-color: #7a00cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+        }
+        .logout-btn:hover, .return:hover {
+            background-color: #5d0096;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+    <script>
+        function cerrarSesion() {
+            window.location.href = 'index.html';
+        }
+
+        function guardarCambios() {
+            const etiquetas = document.getElementById('etiquetas').value;
+            localStorage.setItem('etiquetas', etiquetas);
+            document.getElementById('mostrarEtiquetas').textContent = etiquetas;
+            document.getElementById('editarSeccion').classList.add('hidden');
+            document.getElementById('verPerfil').classList.remove('hidden');
+        }
+
+        function editarPerfil() {
+            document.getElementById('editarSeccion').classList.remove('hidden');
+            document.getElementById('verPerfil').classList.add('hidden');
+        }
+
+        function cargarDatos() {
+            const etiquetasGuardadas = localStorage.getItem('etiquetas');
+            if (etiquetasGuardadas) {
+                document.getElementById('etiquetas').value = etiquetasGuardadas;
+                document.getElementById('mostrarEtiquetas').textContent = etiquetasGuardadas;
+            }
+            const imagenGuardada = localStorage.getItem('avatar');
+            if (imagenGuardada) {
+                document.getElementById('avatar').src = imagenGuardada;
+            }
+        }
+
+        function cambiarImagen(event) {
+            const reader = new FileReader();
+            reader.onload = function () {
+                const avatar = document.getElementById('avatar');
+                avatar.src = reader.result;
+                localStorage.setItem('avatar', reader.result);
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        window.onload = cargarDatos;
+    </script>
+</head>
+<body>
+    <div class="perfil-container">
+        <div class="banner"></div>
+        <img id="avatar" src="avatar.jpg" alt="Avatar" class="avatar">
+        
+        <div id="editarSeccion" class="perfil-info">
+            <h2>Nombre de Usuario</h2>
+            <input type="file" accept="image/*" id="cambiarImagen" onchange="cambiarImagen(event)">
+            <input type="text" id="etiquetas" placeholder="Agrega etiquetas (ej. pronombres, características)">
+            <button onclick="guardarCambios()">Guardar Cambios</button>
+        </div>
+
+        <div id="verPerfil" class="perfil-info hidden">
+            <h2>Nombre de Usuario</h2>
+            <p id="mostrarEtiquetas"></p>
+            <button onclick="editarPerfil()">Editar Perfil</button>
+        </div>
+        
+        <button class="logout-btn" onclick="cerrarSesion()">Cerrar Sesión</button>
+        <a href="menuprincipal.html" class="return">⬅ Volver al menú</a>
+    </div>
+</body>
+</html>

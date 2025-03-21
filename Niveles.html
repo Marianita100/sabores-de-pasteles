@@ -1,0 +1,125 @@
+<section id="Niveles">
+    <h2>Niveles de pasteles🎂</h2>
+    <div class="Niveles-container">
+        <div class="Niveles" onclick="toggleInfo(this)">
+            <img src="https://th.bing.com/th/id/OIP.7XG92pVq31CtXbMP3yw3sQHaFh?rs=1&pid=ImgDetMain" alt="wow te parece?">
+            <p>¿Cuál te gustaria?</p>
+
+        </div>
+        <div class="Niveles">
+            <img src="https://th.bing.com/th/id/OIP.7mF8Z75hWnXfI8RNUE3FLgAAAA?rs=1&pid=ImgDetMain" alt="son muchos niveles">
+            <p>Hay distintos te parecen?</p>
+        </div>
+    </div>
+</div>
+<li><a href="menu.html" class="return">⬅ Volver al menú</a>
+</section>
+
+<style>
+ body {
+            font-family: 'pasteles', cursive, sans-serif;
+            background-color: #a23db6;
+            color: #6d1779;
+            text-align: center;
+        }
+        h2 {
+        text-align: center;
+        color: #ff69b4;
+    }
+
+        header {
+            background-color: #ff69b4;
+            padding: 20px;
+            border-radius: 15px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: rgb(168, 62, 189);
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #773aa0;
+            color: rgb(178, 100, 214);
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background-color: #8b3caa;
+        }
+        .galeria, .universos-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .universo {
+            background: rgb(182, 52, 182);
+            padding: 10px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px #8d44b8;
+            cursor: pointer;
+            position: relative;
+        }
+        .universo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+        }
+        .info {
+            display: none;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            background: rgb(136, 54, 156);
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #7f44af;
+            width: 150px;
+        }
+        .btn.hover .info {
+            display: block;
+        }
+        .personaje:hover .info {
+            display: block;
+        }  
+
+.return-menu {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #995fc9;
+    font-weight: bold;
+}
+
+.return-menu:hover {
+    text-decoration: underline;
+}
+        .return {
+            display: block;
+            margin-top: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #6e1d7e;
+        }
+        .return-menu:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<script>
+    function toggleInfo(element) {
+        let info = element.querySelector(".info");
+        info.style.display = info.style.display === "block" ? "none" : "block";
+    }
+</script>
